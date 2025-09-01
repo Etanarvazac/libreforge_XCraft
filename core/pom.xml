@@ -1,0 +1,161 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>EtanXC</groupId>
+    <actifactId>libreforge</actifactId>
+    <version>4.77.0</version>
+
+    <properties>
+      <java.version>17</java.version>
+      <kotlin.version>2.1.0</kotlin.version>
+      <maven.compiler.source>21</maven.compiler.source>
+      <maven.compiler.target>21</maven.compiler.target>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <repositories>
+      <repository>
+         <id>maven-central</id>
+         <url>https://repo.maven.apache.org/maven2</url>
+      </repository>
+      <repository>
+         <id>auxilor-public</id>
+         <url>https://repo.auxilor.io/repository/maven-public/</url>
+      </repository>
+      <repository>
+         <id>papermc</id>
+         <url>https://repo.papermc.io/repository/maven-public/</url>
+      </repository>
+      <repository>
+         <id>spigot-snapshots</id>
+         <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+      </repository>
+      <repository>
+         <id>codemc</id>
+         <url>https://repo.codemc.io/repository/maven-public/</url>
+      </repository>
+      <repository>
+         <id>enginehub</id>
+         <url>https://maven.enginehub.org/repo/</url>
+      </repository>
+      <repository>
+         <id>placeholderapi</id>
+         <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
+      </repository>
+      <repository>
+         <id>citizens</id>
+         <url>https://maven.citizensnpcs.co/repo</url>
+      </repository>
+      <repository>
+         <id>networkmanager</id>
+         <url>https://repo.networkmanager.xyz/repository/maven-public/</url>
+      </repository>
+      <repository>
+         <id>william278</id>
+         <url>https://repo.william278.net/releases</url>
+      </repository>
+      <repository>
+         <id>momirealms</id>
+         <url>https://repo.momirealms.net/releases/</url>
+      </repository>
+      <repository>
+         <id>artillex</id>
+         <url>https://repo.artillex-studios.com/releases/</url>
+      </repository>
+    </repositories>
+
+    <dependencies>
+      <dependency>
+         <groupId>org.jetbrains</groupId>
+         <artifactId>annotations</artifactId>
+         <version>23.0.0</version>
+         <scope>provided</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.jetbrains.kotlin</groupId>
+         <artifactId>kotlin-stdlib</artifactId>
+         <version>${kotlin.version}</version>
+         <scope>provided</scope>
+      </dependency>
+      <!-- Local JARs -->
+      <dependency>
+         <groupId>local</groupId>
+         <artifactId>lib-jars</artifactId>
+         <version>1.0</version>
+         <scope>system</scope>
+         <systemPath>${project.basedir}/lib/*.jar</systemPath>
+      </dependency>
+    </dependencies>
+
+      <build>
+        <plugins>
+            <!-- Kotlin Compiler -->
+            <plugin>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-maven-plugin</artifactId>
+                <version>${kotlin.version}</version>
+                <executions>
+                    <execution>
+                        <id>compile</id>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>test-compile</goal>
+                        </goals>
+                        <configuration>
+                            <jvmTarget>17</jvmTarget>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Shadow Plugin Equivalent -->
+            <plugin>
+                <groupId>com.github.johnrengelman</groupId>
+                <artifactId>shadow</artifactId>
+                <version>8.3.5</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Maven Compiler -->
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <release>${java.version}</release>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+
+            <!-- Source JAR -->
+            <plugin>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <distributionManagement>
+        <repository>
+            <id>auxilor</id>
+            <name>Auxilor Releases</name>
+            <url>https://repo.auxilor.io/repository/maven-releases/</url>
+        </repository>
+    </distributionManagement>
+
+</project>
