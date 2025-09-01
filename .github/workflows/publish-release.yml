@@ -26,7 +26,7 @@ jobs:
           java-version: '21'
 
       - name: Install Maven
-        run: sudo apt get update && sudo apt-get install -y maven
+        run: sudo apt-get update && sudo apt-get install -y maven
 
       - name: Build with Maven
         run: mvn -f ./core/pom.xml clean package
