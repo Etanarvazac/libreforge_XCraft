@@ -78,13 +78,54 @@
          <scope>provided</scope>
       </dependency>
       <!-- Local JARs -->
-      <dependency>
-         <groupId>local</groupId>
-         <artifactId>lib-jars</artifactId>
-         <version>1.0</version>
-         <scope>system</scope>
-         <systemPath>${project.basedir}/lib/*.jar</systemPath>
-      </dependency>
+     <dependency>
+       <groupId>com.edprison</groupId>
+       <artifactId>edprison</artifactId>
+       <version>5.6-S21</version>
+       <scope>provided</scope>
+     </dependency>
+         
+     <dependency>
+       <groupId>com.fancynpcs</groupId>
+       <artifactId>fancynpcs</artifactId>
+       <version>2.4.1</version>
+       <scope>provided</scope>
+     </dependency>
+         
+     <dependency>
+       <groupId>com.tab</groupId>
+       <artifactId>tab</artifactId>
+       <version>4.0.9</version>
+       <scope>provided</scope>
+     </dependency>
+         
+     <dependency>
+       <groupId>com.tmmobcoins</groupId>
+       <artifactId>tmmobcoins</artifactId>
+       <version>1.0</version>
+       <scope>provided</scope>
+     </dependency>
+         
+     <dependency>
+       <groupId>com.terra</groupId>
+       <artifactId>terra-bukkit</artifactId>
+       <version>6.4.3-BETA</version>
+       <scope>provided</scope>
+     </dependency>
+         
+     <dependency>
+       <groupId>com.terraform</groupId>
+       <artifactId>terraform-generator</artifactId>
+       <version>13.0.3</version>
+       <scope>provided</scope>
+     </dependency>
+         
+     <dependency>
+       <groupId>com.enginehub</groupId>
+       <artifactId>worldedit-bukkit</artifactId>
+       <version>7.2.14</version>
+       <scope>provided</scope>
+     </dependency>
     </dependencies>
 
       <build>
