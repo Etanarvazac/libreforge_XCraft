@@ -28,6 +28,16 @@ jobs:
       - name: Install Maven
         run: sudo apt-get update && sudo apt-get install -y maven
 
+      - name: Install local JARs
+      run: |
+        mvn install:install-file -Dfile=lib/EdPrison-5.6-S21.jar -DgroupId=com.edprison -DartifactId=edprison -Dversion=5.6-S21 -Dpackaging=jar
+        mvn install:install-file -Dfile=lib/FancyNpcs-2.4.1.jar -DgroupId=com.fancynpcs -DartifactId=fancynpcs -Dversion=2.4.1 -Dpackaging=jar
+        mvn install:install-file -Dfile=lib/TAB.v4.0.9.jar -DgroupId=com.tab -DartifactId=tab -Dversion=4.0.9 -Dpackaging=jar
+        mvn install:install-file -Dfile=lib/TMMobcoins.jar -DgroupId=com.tmmobcoins -DartifactId=tmmobcoins -Dversion=1.0 -Dpackaging=jar
+        mvn install:install-file -Dfile=lib/Terra-bukkit-6.4.3-BETA+ab60f14ff-shaded.jar -DgroupId=com.terra -DartifactId=terra-bukkit -Dversion=6.4.3-BETA -Dpackaging=jar
+        mvn install:install-file -Dfile=lib/TerraformGenerator-13.0.3_1.18.2-1.20.4.jar -DgroupId=com.terraform -DartifactId=terraform-generator -Dversion=13.0.3 -Dpackaging=jar
+        mvn install:install-file -Dfile=lib/worldedit-bukkit-7.2.14.jar -DgroupId=com.enginehub -DartifactId=worldedit-bukkit -Dversion=7.2.14 -Dpackaging=jar
+    
       - name: Build with Maven
         run: mvn -f ./core/pom.xml clean package
 
