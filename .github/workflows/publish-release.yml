@@ -1,30 +1,32 @@
-name: Publish Packages
+name: Build and Upload JAR
+
 on:
-  workflow_dispatch:
-  release:
-    types: [created]
+  push:
+    branches:
+      - Master
 
 jobs:
-  publish:
-    runs-on: ubuntu-latest
-    steps:
+  build:
+    runs on: ubuntu-latest
 
-      - name: Checkout latest code
+    steps:
+      - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up JDK 21
-        uses: actions/setup-java@v2
+      - name: Setup JDK
+        uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: 21
+          java-version: '21'
 
-      - name: Change wrapper permissions
-        run: chmod +x ./gradlew
+      - name: Install Maven
+        run: sudo apt get update && sudo apt-get install -y maven
 
-      - name: Publish package
-        uses: gradle/gradle-build-action@v2
+      - name: Build with Maven
+        run: mvn -f ./core/pom.xml clean package
+
+      - name: Upload JAR
+        uses: actions/upload-artifact@v4
         with:
-          arguments: publish
-        env:
-          MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
+          name: LibreForge
+          path: /home/runner/work/libreforge_XCraft/libreforge_XCraft/libreforge/target/*.jar
