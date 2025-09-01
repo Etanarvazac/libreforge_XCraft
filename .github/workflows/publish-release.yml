@@ -3,7 +3,7 @@ name: Build and Upload JAR
 on:
   push:
     branches:
-      - Master
+      - master
   workflow_dispatch:
     inputs:
       environment:
