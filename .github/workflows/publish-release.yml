@@ -4,6 +4,12 @@ on:
   push:
     branches:
       - Master
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Manual trigger'
+        required: false
+        default: 'staging'
 
 jobs:
   build:
